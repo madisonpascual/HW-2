@@ -1,4 +1,6 @@
 # SDS 315 HW-2
+## Madison Pascual
+## mnp2367
 
 # This repository contains all the files and code related to Homework 2 for the SDS 315 course. The assignment focuses on data visualization, wrangling, and analysis using R. Four problems are addressed, each requiring specific plots and summaries to answer questions about datasets provided in the course.  
 
