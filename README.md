@@ -3,13 +3,8 @@
 # This repository contains all the files and code related to Homework 2 for the SDS 315 course. The assignment focuses on data visualization, wrangling, and analysis using R. Four problems are addressed, each requiring specific plots and summaries to answer questions about datasets provided in the course.  
 
 ## Files
-- `HW2.Rmd`: The R Markdown file containing the code and write-up for the assignment.  
-- `HW2.pdf`: The PDF write-up generated from the R Markdown file, containing all plots and captions.  
-- `profs.csv`: Dataset used for Problem 1, analyzing course evaluations and instructor characteristics.  
-- `bikeshare.csv`: Dataset used for Problem 2, analyzing bike-sharing data in Washington D.C. (Not included in repository because file is too large.)  
-- `capmetro_UT.csv`: Dataset used for Problem 3, analyzing Capital Metro bus ridership data. 
-- `billboard.csv`: Dataset used for Problem 4, analyzing Billboard Top 100 song trends.  
-
+- `HW2.Rmd`: The R Markdown file containing the code and write-up for the assignment.
+  
 ## Problem Breakdown
 ### Problem 1: Beauty, or Not, in the Classroom
 Analyzes course evaluation scores using the `profs.csv` dataset.  
