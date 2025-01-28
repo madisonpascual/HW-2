@@ -11,12 +11,13 @@ GitHub Link: [My Homework 2 Repository](https://github.com/madisonpascual/HW-2)
 # Homework 2
 
 ```{r setup, include = FALSE, warning = FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 library(ggplot2)
 library(knitr)
 library(tidyverse)
 library(rvest)
 library(tinytex)
+library(ColourblindR)
 ```
 
 # Problem 1
@@ -27,7 +28,8 @@ profs <- read.csv("profs.csv")
 
 profs |>
   ggplot() +
-  geom_histogram(aes(x = eval), binwidth = 0.1, fill = "#009fe9", color = "black") +
+  geom_histogram(aes(x = eval), binwidth = 0.1, color = "black") +
+  theme_trita("fill") +
   labs(
     title = "Distribution of Course Evaluation Scores",
     x = "Course Evaluation Score",
@@ -40,7 +42,8 @@ This histogram shows the distribution of course evaluation scores across all ins
 ```{r}
 profs |>
   ggplot() + 
-  geom_boxplot(aes(x = eval, y = as.factor(native), fill = as.factor(native))) + 
+  geom_boxplot(aes(x = as.factor(native), y = eval, fill = as.factor(native)), ) +
+  theme_trita("fill") +
   labs(
     title = "Distribution of Course Evaluations by English Speaker Status",
     x = "Course Evaluation Score",
@@ -54,8 +57,9 @@ The box plots compare course evaluation scores between professors who are native
 ```{r}
 profs |>
   ggplot() +
-  geom_histogram(aes(x = eval), fill = "#009fe9", color = "black", binwidth = 0.1) + 
-  facet_wrap(~gender, ) +
+  geom_histogram(aes(x = eval), color = "black", binwidth = 0.1) + 
+  theme_trita("fill") +
+  facet_wrap(~gender, nrow = 2) +
   labs(
     title = "Distribution of Course Evaluation Scores by Gender",
     x = "Course Evaluation Score",
@@ -69,7 +73,8 @@ This faceted histogram compares the distribution of evaluation scores for female
 ```{r}
 profs |>
   ggplot() +
-  geom_point(aes(x = eval, y = beauty), color = "#009fe9") +
+  geom_point(aes(x = beauty, y = eval)) +
+  theme_trita("fill") +
   labs(
     title = "Physical Attractiveness vs. Course Evaluation Score",
     x = "Course Evaluation Score",
@@ -90,7 +95,8 @@ bikeshare_hourly <- bikeshare |>
 
 bikeshare_hourly |>
   ggplot() +
-  geom_line(aes(x = hr, y = avg_totals), color = "#009fe9", linewidth = 1) + 
+  geom_line(aes(x = hr, y = avg_totals), linewidth = 1) + 
+  theme_trita("fill") +
   labs(
     title = "Average Ridership Across Hours of the Day",
     x = "Hour of the Day",
@@ -108,8 +114,9 @@ bikeshare_wday <- bikeshare |>
 
 bikeshare_wday |>
   ggplot() + 
-  geom_line(aes(x = hr, y = avg_totals), color = "#009fe9", linewidth = 1) +
-  facet_wrap(~workingday, labeller = as_labeller(c("Yes" = "Working Day", "No" = "Non-working Day"))) +
+  geom_line(aes(x = hr, y = avg_totals), linewidth = 1) +
+  theme_trita("fill") +
+  facet_wrap(~workingday, nrow = 2, labeller = as_labeller(c("Yes" = "Working Day", "No" = "Non-working Day"))) +
   labs(
     title = "Average Ridership by Working Day",
     x = "Hour of the Day",
@@ -131,7 +138,8 @@ bikeshare_weather <- bikeshare |>
 bikeshare_weather |>
   ggplot() +
   geom_col(aes(x = factor(weathersit), y = avg_totals, fill = as.factor(workingday))) +
-  facet_wrap(~workingday, labeller = as_labeller(c("Yes" = "Working Day", "No" = "Non-working Day"))) +
+  theme_trita("fill") +
+  facet_wrap(~workingday, nrow = 2, labeller = as_labeller(c("Yes" = "Working Day", "No" = "Non-working Day"))) +
   labs(
     title = "Average Ridership at 9 am by Weather Code",
     x = "Weather Situation Code",
@@ -160,6 +168,7 @@ capmetro_avg <- capmetro_UT |>
 capmetro_avg |>
   ggplot() +
   geom_line(aes(x = hour_of_day, y = avg_boardings, color = month, group = month), linewidth = 1) +
+  theme_trita("color") +
   facet_wrap(~day_of_week, nrow = 2) +
   labs(
     title = "Average Boardings by Hour, Day, and Month",
@@ -174,6 +183,7 @@ This faceted line graph shows the average number of boardings on Cap Metro trans
 capmetro_UT |>
   ggplot() +
   geom_point(aes(x = temperature, y = boarding, color = factor(weekend))) +
+  theme_trita("color") +
   facet_wrap(~hour_of_day, nrow = 4) +
   labs(
     title = "Boardings vs. Temperature by Hour of Day",
@@ -216,7 +226,8 @@ unique_songs <- song_year_count |>
 
 unique_songs |>
   ggplot() +
-  geom_line(aes(x = year, y = unique_songs), color = "#009fe9", size = 1) + 
+  geom_line(aes(x = year, y = unique_songs), size = 1) + 
+  theme_trita("fill") +
   labs(
     title = "Musical Diversity of the Billboard Top 100 Over Time",
     x = "Year",
@@ -237,8 +248,9 @@ ten_week_hits <- billboard |>
 
 ten_week_hits |>
   ggplot() +
-  geom_col(aes(x = performer, y = ten_week_hits), fill = "#009fe9") + 
+  geom_col(aes(x = performer, y = ten_week_hits)) + 
   coord_flip() +
+  theme_trita("fill") +
   labs(
     title = "Artists with at Least 30 Ten-Week Hits",
     x = "Artist",
